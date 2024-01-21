@@ -1,0 +1,4 @@
+__pycache__/
+plants.db
+database.py
+test.csv
