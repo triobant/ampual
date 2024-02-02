@@ -11,4 +11,9 @@ via input of a date.
     - distance between each plant
     - duration from raising to harvesting
     - germination time
-2.
+2. search function to crawl db for either
+    - vegetable name
+    - germination-time
+    - transplant-time
+    - harvest-time
+3.
