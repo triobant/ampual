@@ -8,3 +8,11 @@ from database.configurations import init_db, db_session
 from database.schema import ItemSchema
 from database.models import Item
 
+
+app = FastAPI()
+
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+templates = Jinja2Templates(directory="templates")
