@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Plant(BaseModel):
+class PlantSchema(BaseModel):
     name: str
     raising_time: str
     transplant_time: str
