@@ -20,3 +20,23 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/")
 def read_root():
     return {"Ping": "Pong"}
+
+@app.get("/app/api/plants")
+async def get_plants():
+    return 1
+
+@app.get("app/api/plants{id}")
+async def get_plants_by_id(id):
+    return 2
+
+@app.post("app/api/plants")
+async def post_plants(id):
+    return 2
+
+@app.put("app/api/plants{id}")
+async def put_plants(id, data):
+    return 2
+
+@app.delete("app/api/plants{id}")
+async def delete_plants(id):
+    return 2
