@@ -1,5 +1,5 @@
 __pycache__/
 plants.db
-database.py
+database.py.bak
 test.csv
 .venv/
