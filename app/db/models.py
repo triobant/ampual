@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 from .configurations import Base
 
 
-class Vegetable(Base):
+class Plant(Base):
     __tablename__ = 'vegetables'
     id = Column(Integer, primary_key=True, index=True)
     raising_time = Column(String, index=True)

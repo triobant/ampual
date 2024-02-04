@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 
-class ItemSchema(BaseModel):
+class Plant(BaseModel):
     task: str
