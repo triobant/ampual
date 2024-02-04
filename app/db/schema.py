@@ -2,4 +2,7 @@ from pydantic import BaseModel
 
 
 class Plant(BaseModel):
-    task: str
+    name: str
+    raising_time: str
+    transplant_time: str
+    harvest_time: str
