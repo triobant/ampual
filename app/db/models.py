@@ -2,7 +2,9 @@ from sqlalchemy import Column, Integer, String
 from .configurations import Base
 
 
-class Item(Base):
-    __tablename__ = 'items'
-    id = Column(Integer, primary_key=True)
-    task = Column(String(256))
+class Vegetable(Base):
+    __tablename__ = 'vegetables'
+    id = Column(Integer, primary_key=True, index=True)
+    raising_time = Column(String, index=True)
+    transplant_time = Column(String, index=True)
+    harvest_time = Column(String, index=True)
