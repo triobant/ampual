@@ -16,4 +16,5 @@ via input of a date.
     - germination-time
     - transplant-time
     - harvest-time
-3.
+3. add to requirements:
+    - versions
