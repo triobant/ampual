@@ -3,7 +3,7 @@ from .configurations import Base
 
 
 class Plant(Base):
-    __tablename__ = 'vegetables'
+    __tablename__ = 'plants'
     id = Column(Integer, primary_key=True, index=True)
     raising_time = Column(String, index=True)
     transplant_time = Column(String, index=True)
