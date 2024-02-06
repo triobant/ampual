@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from app.db.configurations import init_db, db_session
-from app.db.schema import PlantSchema
+from app.db.schema import PlantBase
 from app.db.models import Plant
 
 
