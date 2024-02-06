@@ -13,7 +13,7 @@ class PlantRepo:
 
 
     def fetch_by_id(db: Session, _id):
-        ...
+        return db.query(models.Plant).filter(models.Plant.id == _id).first()
 
 
     def fetch_by_name(db: Session, name):
