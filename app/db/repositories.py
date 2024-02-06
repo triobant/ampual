@@ -22,3 +22,15 @@ class PlantRepo:
 
     def fetch_all(db: Session, skip: int = 0, limit: int = 100):
         return db.query(models.Plant).offset(skip).limit(limit).all()
+
+
+    async def delete(db: Session, plant_id):
+        db_plant = db.query(models.Plant).filter_by(id=plant_id).first()
+        db.delete(db_plant)
+        db.commit()
+
+
+    async def update(db: Session, plant_data):
+        updated_plant = db.merge(plant_data)
+        db.commit()
+        return updated_plant
