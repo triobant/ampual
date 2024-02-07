@@ -9,7 +9,7 @@ from app.db.schema import PlantBase
 from app.db.models import Plant
 
 
-app = FastAPI()
+app = FastAPI(title="Ampual - Grow your food")
 
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
