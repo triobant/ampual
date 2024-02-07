@@ -24,7 +24,7 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/")
-def read_root():
+def read_root(request: Request):
     data = {"Ping": "Pong"}
     return templates.TemplateResponse("index.html", {"request": request, "data": data})
 
