@@ -1,4 +1,5 @@
 import json
+import uvicorn
 from fastapi import FastAPI, Depends, Request, Response
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -24,7 +25,8 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
 def read_root():
-    return {"Ping": "Pong"}
+    data = {"Ping": "Pong"}
+    return templates.TemplateResponse("index.html", {"request": request, "data": data})
 
 
 @app.get("/app/api/plants")
