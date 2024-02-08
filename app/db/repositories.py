@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
-from . import models, schema
+from . import models, schemas
 
 
 class PlantRepo:
 
-    async def create(db: Session, plant: schema.PlantCreate):
+    async def create(db: Session, plant: schemas.PlantCreate):
         db_plant = models.Plant(name=plant.name, raising_time=plant.raising_time, transplant_time=plant.transplant_time, harvest_time=plant.harvest_time)
         db.add(db_plant)
         db.commit()
