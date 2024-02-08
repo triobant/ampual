@@ -5,9 +5,10 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from app.db.configurations import init_db, db_session
+from app.db.configurations import init_db, db_session, engine
 from app.db.schema import PlantBase
 from app.db.models import Plant
+from app.db.repositories import PlantRepo
 
 
 app = FastAPI(
@@ -15,6 +16,9 @@ app = FastAPI(
     description="Ampual - with FastAPI, Tailwind-CSS, React, SQLite3 and SQLAlchemy",
     version="0.0.1",
 )
+
+
+init_db
 
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
