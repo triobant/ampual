@@ -62,3 +62,7 @@ async def put_plants(id, data):
 @app.delete("/app/api/plants{id}")
 async def delete_plants(id):
     return 2
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=9000, reload=True)
