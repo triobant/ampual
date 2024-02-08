@@ -1,5 +1,7 @@
 import json
 import uvicorn
+import app.db.models as models
+import app.db.schemas as schemas
 from fastapi import FastAPI, Depends, Request, Response
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -40,8 +42,16 @@ def read_root(request: Request):
 
 
 @app.post('/plants', tags=["Plant"],response_model=schemas.Plant,status_code=201)
-async def post_plants(id):
-    return 2
+async def create_plant(plant_request: schemas.PlantCreate, db_session: Session = Depends(init_db)):
+    """
+    Create a Plant and store it in the database
+    """
+
+    db_plant = PlantRepo.fetch_by_name(db, name=plant_request.name)
+    if db_plant:
+        raise HTTPException(status_code=400, detail="Plant already exists!")
+
+    return await PlantRepo.create(db_session=db_session, plant=plant_request)
 
 
 @app.get("/app/api/plants")
