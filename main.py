@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from app.db.configurations import init_db, db_session, engine
-from app.db.schema import PlantBase
+from app.db.schemas import PlantBase
 from app.db.models import Plant
 from app.db.repositories import PlantRepo
 
@@ -32,11 +32,16 @@ def validation_exception_handler(request, err):
     base_error_message = f"Failed to execute: {request.method}: {request.url}"
     return HTMLResponse(status_code=400, content={"message": f"{base_error_message}. Detail: {err}"})
 
-
+# Test route
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
     data = {"Ping": "Pong"}
     return templates.TemplateResponse("index.html", {"request": request, "data": data})
+
+
+@app.post('/plants', tags=["Plant"],response_model=schemas.Plant,status_code=201)
+async def post_plants(id):
+    return 2
 
 
 @app.get("/app/api/plants")
@@ -46,11 +51,6 @@ async def get_plants():
 
 @app.get("/app/api/plants{id}")
 async def get_plants_by_id(id):
-    return 2
-
-
-@app.post("/app/api/plants")
-async def post_plants(id):
     return 2
 
 
