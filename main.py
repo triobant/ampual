@@ -27,6 +27,12 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 
+@app.exception_handler(Exception)
+def validation_exception_handler(request, err):
+    base_error_message = f"Failed to execute: {request.method}: {request.url}"
+    return HTMLResponse(status_code=400, content={"message": f"{base_error_message}. Detail: {err}"})
+
+
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
     data = {"Ping": "Pong"}
