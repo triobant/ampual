@@ -11,7 +11,7 @@ from app.db.models import Plant
 
 
 app = FastAPI(
-    title="Ampual - Grow your food - Documentation",
+    title="Documentation - Ampual - Grow your food",
     description="Ampual - with FastAPI, Tailwind-CSS, React, SQLite3 and SQLAlchemy",
     version="0.0.1",
 )
