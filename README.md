@@ -1,4 +1,4 @@
-![Alt text](placeholder-logo.png)
+<img src="placeholder-logo.png" alt="placeholder-logo" width="200" />
 
 
 # ampual
