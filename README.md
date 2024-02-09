@@ -1,3 +1,6 @@
+![Alt text](placeholder-logo.png)
+
+
 # ampual
 #### Video Demo: <URL HERE>
 #### Description:

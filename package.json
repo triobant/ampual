@@ -1,0 +1,19 @@
+{
+  "name": "ampual",
+  "version": "0.0.1",
+  "description": "User Story: As a User, I want to call all the vegetables that I can plant or prepare to plant, via input of a date.",
+  "main": "index.js",
+  "scripts": {
+    "test": "consolse.log(\"Hello World\")"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/triobant/ampual.git"
+  },
+  "author": "triobant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/triobant/ampual/issues"
+  },
+  "homepage": "https://github.com/triobant/ampual#readme"
+}
