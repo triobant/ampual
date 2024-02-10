@@ -47,16 +47,25 @@ async def create_plant(plant_request: schemas.PlantCreate, db_session: Session =
     Create a Plant and store it in the database
     """
 
-    db_plant = PlantRepo.fetch_by_name(db, name=plant_request.name)
+    db_plant = PlantRepo.fetch_by_name(db_session, name=plant_request.name)
     if db_plant:
         raise HTTPException(status_code=400, detail="Plant already exists!")
 
     return await PlantRepo.create(db_session=db_session, plant=plant_request)
 
 
-@app.get("/app/api/plants")
-async def get_plants():
-    return 1
+@app.get('/plants', tags=["Plant"],response_model=List[schemas.Plant])
+def get_all_plants(name: Optional[str] = None,db_session: Session = Depends(init_db)):
+    """
+    Get all the Plants stored in database
+    """
+    if name:
+        plants = []
+        db_plant = PlantRepo.fetch_by_name(db_session,name)
+        plants.append(db_plant)
+        return plants
+    else:
+        return PlantRepo.fetch_all(db_session)
 
 
 @app.get("/app/api/plants{id}")
