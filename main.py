@@ -7,6 +7,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
+from typing import List,Optional
 from app.db.configurations import init_db, db_session, engine
 from app.db.schemas import PlantBase
 from app.db.models import Plant
