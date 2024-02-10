@@ -68,10 +68,10 @@ def get_all_plants(name: Optional[str] = None,db_session: Session = Depends(init
         return PlantRepo.fetch_all(db_session)
 
 
-@app.get("/app/api/plants{id}")
-async def get_plants_by_id(id):
-    return 2
-
+@app.get('/plants/{plant_id}', tags=["Plant"],response_model=schemas.Plant)
+def get_plant(plant_id: int, db_session: Session = Depends(init_db)):
+    ...
+#TODO: add function to get plant by name or dates
 
 @app.delete("/app/api/plants{id}")
 async def delete_plants(id):
