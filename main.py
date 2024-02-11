@@ -74,15 +74,28 @@ def get_plant(plant_id: int, db_session: Session = Depends(init_db)):
     ...
 #TODO: add function to get plant by name or dates
 
-@router.delete('/plants/{plant_id}, tags=["Plant"]')
+@router.delete()
 async def delete_plants(plant_id: int, db_session: Session = Depends(init_db)):
     ...
 #TODO: remove plant from database?? Maybe don't use this method
 
 
-@router.put('/app/api/plants{id}')
-async def put_plants(id, data):
-    return 2
+@router.put('/plants/{plant_id}', tags=["Plant"], response_model=schemas.Plant)
+async def put_plants(plant_id: int, plant_request: schemas.Plant, db_session: Session = Depends(init_db)):
+    """
+    Update a Plant stored in the database
+    """
+    db_plant = PlantRepo.fetch_by_id(db_session, plant_id)
+    if db_plant:
+        update_plant_encoded = jsonable_encoder(plant_request)
+        db_plant.name = update_plant_encoded['name']
+        db_plant.raising_time = update_plant_encoded['raising_time']
+        db_plant.transplant_time = update_plant_encoded['transplant_time']
+        db_plant.harvest_time = update_plant_encoded['harvest_time']
+        return await PlantRepo.update(db=db_session, plant_data=db_plant)
+    else:
+        raise HTTPException(status_code=400, detail="Plant not found with the given ID")
+
 
 
 if __name__ == "__main__":
