@@ -74,9 +74,10 @@ def get_plant(plant_id: int, db_session: Session = Depends(init_db)):
     ...
 #TODO: add function to get plant by name or dates
 
-@router.delete("/app/api/plants{id}")
-async def delete_plants(id):
-    return 2
+@router.delete('/plants/{plant_id}, tags=["Plant"]')
+async def delete_plants(plant_id: int, db_session: Session = Depends(init_db)):
+    ...
+#TODO: remove plant from database?? Maybe don't use this method
 
 
 @router.put('/app/api/plants{id}')
