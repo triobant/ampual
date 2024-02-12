@@ -77,7 +77,7 @@ def get_plant(plant_id: int, db_session: Session = Depends(init_db)):
 @router.delete()
 async def delete_plants(plant_id: int, db_session: Session = Depends(init_db)):
     ...
-#TODO: remove plant from database?? Maybe don't use this method
+#TODO: remove plant from database only if it is incorrect
 
 
 @router.put('/plants/{plant_id}', tags=["Plant"], response_model=schemas.Plant)
