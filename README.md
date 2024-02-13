@@ -23,3 +23,4 @@ via input of a date.
     - harvest-time
 3. add to requirements:
     - versions
+4. add authentication, user, admin
