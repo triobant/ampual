@@ -74,10 +74,16 @@ def get_plant(plant_id: int, db_session: Session = Depends(init_db)):
     ...
 #TODO: add function to get plant by name or dates
 
-@router.delete()
-async def delete_plants(plant_id: int, db_session: Session = Depends(init_db)):
-    ...
-#TODO: remove plant from database only if it is incorrect
+@router.delete('plants/{plant_name}', tags=["Plant"])
+async def delete_plants(plant_name: str, db_session: Session = Depends(init_db)):
+    """
+    Delete the Plant with the given name provided by User stored in database
+    """
+    db_plant = PlantRepo.fetch_by_name(db_session, plant_name)
+    if plant_name is None:
+        raise HTTPException(status_code=404, detail="Plant not found with the given name")
+    await PlantRepo.delete(db_session, plant_name)
+    return "Plant deleted successfully!"
 
 
 @router.put('/plants/{plant_id}', tags=["Plant"], response_model=schemas.Plant)
