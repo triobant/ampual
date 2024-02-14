@@ -16,6 +16,5 @@ class PlantCreate(PlantBase):
 class Plant(PlantBase):
     id: int
 
-
     class Config:
         orm_mode = True
