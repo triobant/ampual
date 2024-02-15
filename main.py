@@ -38,13 +38,6 @@ def validation_exception_handler(request, err):
     )
 
 
-# Test route
-@router.get("/", response_class=HTMLResponse)
-def read_root(request: Request):
-    data = {"Ping": "Pong"}
-    return templates.TemplateResponse("index.html", {"request": request, "data": data})
-
-
 @router.post("/plants", tags=["Plant"], response_model=schemas.Plant, status_code=201)
 async def create_plant(
     plant_request: schemas.PlantCreate, db_session: Session = Depends(init_db)
