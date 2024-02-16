@@ -6,6 +6,7 @@ from fastapi import FastAPI, Depends, Request, Response
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware import CORSmiddleware
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from backend.db.configurations import init_db, db_session, engine
@@ -18,6 +19,21 @@ router = FastAPI(
     title="Documentation - Ampual - Grow your food",
     description="Ampual - with FastAPI, Tailwind-CSS, React, SQLite3 and SQLAlchemy",
     version="0.0.1",
+)
+
+
+origins = [
+        "http://localhost:3000",
+        "localhost:3000"
+]
+
+
+router.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"]
 )
 
 
