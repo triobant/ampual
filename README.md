@@ -21,6 +21,4 @@ via input of a date.
     - raising-time
     - transplant-time
     - harvest-time
-3. add to requirements:
-    - versions
-4. add authentication, user, admin
+3. add authentication, user, admin (optional)
