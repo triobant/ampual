@@ -1,7 +1,7 @@
 import json
 import uvicorn
-import backend.db.models as models
-import backend.db.schemas as schemas
+import db.models as models
+import db.schemas as schemas
 from fastapi import FastAPI, Depends, Request, Response
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -9,10 +9,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from backend.db.configurations import init_db, db_session, engine
-from backend.db.schemas import PlantBase
-from backend.db.models import Plant
-from backend.db.repositories import PlantRepo
+from db.configurations import init_db, db_session, engine
+from db.schemas import PlantBase
+from db.models import Plant
+from db.repositories import PlantRepo
 
 
 router = FastAPI(
