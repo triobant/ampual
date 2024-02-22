@@ -40,9 +40,6 @@ router.add_middleware(
 init_db
 
 
-router.mount("/static", StaticFiles(directory="static"), name="static")
-
-
 templates = Jinja2Templates(directory="templates")
 
 
