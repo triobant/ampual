@@ -6,6 +6,7 @@ class PlantRepo:
 
     async def create(db: Session, plant: schemas.PlantCreate):
         db_plant = models.Plant(
+            id=plant.id,
             name=plant.name,
             raising_time=plant.raising_time,
             transplant_time=plant.transplant_time,
