@@ -37,7 +37,7 @@ router.add_middleware(
 )
 
 
-init_db
+init_db()
 
 
 templates = Jinja2Templates(directory="templates")
@@ -53,7 +53,7 @@ def validation_exception_handler(request, err):
 
 @router.post("/plants", tags=["Plant"], response_model=schemas.Plant, status_code=201)
 async def create_plant(
-    plant_request: schemas.PlantCreate, db_session: Session = Depends(init_db)
+    plant_request: schemas.PlantCreate, db_session: Session = Depends(init_db())
 ):
     """
     Create a Plant and store it in the database
@@ -67,7 +67,7 @@ async def create_plant(
 
 
 @router.get("/plants", tags=["Plant"], response_model=List[schemas.Plant])
-def get_all_plants(name: Optional[str] = None, db_session: Session = Depends(init_db)):
+def get_all_plants(name: Optional[str] = None, db_session: Session = Depends(init_db())):
     """
     Get all the Plants stored in database
     """
@@ -81,7 +81,7 @@ def get_all_plants(name: Optional[str] = None, db_session: Session = Depends(ini
 
 
 @router.get("/plants/{plant_id}", tags=["Plant"], response_model=schemas.Plant)
-def get_plant(plant_name: str, db_session: Session = Depends(init_db)):
+def get_plant(plant_name: str, db_session: Session = Depends(init_db())):
     """
     Get the Plant with the given name provided by User stored in database
     """
@@ -94,7 +94,7 @@ def get_plant(plant_name: str, db_session: Session = Depends(init_db)):
 
 
 @router.delete("plants/{plant_name}", tags=["Plant"])
-async def delete_plants(plant_name: str, db_session: Session = Depends(init_db)):
+async def delete_plants(plant_name: str, db_session: Session = Depends(init_db())):
     """
     Delete the Plant with the given name provided by User stored in database
     """
@@ -109,7 +109,7 @@ async def delete_plants(plant_name: str, db_session: Session = Depends(init_db))
 
 @router.put("/plants/{plant_id}", tags=["Plant"], response_model=schemas.Plant)
 async def put_plants(
-    plant_id: int, plant_request: schemas.Plant, db_session: Session = Depends(init_db)
+    plant_id: int, plant_request: schemas.Plant, db_session: Session = Depends(init_db())
 ):
     """
     Update a Plant stored in the database
