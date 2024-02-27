@@ -13,8 +13,8 @@ class PlantRepo:
             harvest_time=plant.harvest_time,
         )
         db.add(db_plant)
-        db.commit()
-        db.refresh(db_plant)
+        await db.commit()
+        await db.refresh(db_plant)
         return db_plant
 
     def fetch_by_id(db: Session, _id):
@@ -29,9 +29,9 @@ class PlantRepo:
     async def delete(db: Session, plant_id):
         db_plant = db.query(models.Plant).filter_by(id=plant_id).first()
         db.delete(db_plant)
-        db.commit()
+        await db.commit()
 
     async def update(db: Session, plant_data):
         updated_plant = db.merge(plant_data)
-        db.commit()
+        await db.commit()
         return updated_plant
