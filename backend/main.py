@@ -10,8 +10,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from db.configurations import init_db, db_session, engine
-from db.schemas import PlantBase
-from db.models import Plant
 from db.repositories import PlantRepo
 
 
