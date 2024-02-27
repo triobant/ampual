@@ -72,7 +72,7 @@ def get_all_plants(name: Optional[str] = None, db_session: Session = Depends(db_
     if name:
         plants = []
         db_plant = PlantRepo.fetch_by_name(db_session, name)
-        plants.routerend(db_plant)
+        plants.append(db_plant)
         return plants
     else:
         return PlantRepo.fetch_all(db_session)
