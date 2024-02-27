@@ -91,7 +91,7 @@ def get_plant(plant_name: str, db_session: Session = Depends(db_session)):
     return db_plant
 
 
-@router.delete("plants/{plant_name}", tags=["Plant"])
+@router.delete("/plants/{plant_name}", tags=["Plant"])
 async def delete_plants(plant_name: str, db_session: Session = Depends(db_session)):
     """
     Delete the Plant with the given name provided by User stored in database
