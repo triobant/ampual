@@ -23,6 +23,12 @@ class PlantRepo:
     def fetch_by_name(db: Session, name):
         return db.query(models.Plant).filter(models.Plant.name == name).first()
 
+    def fetch_by_partial_name(db: Session, name: str) -> List[Plant]:
+        """
+        Fetch plants matching the partial name
+        """
+        return db.query(Plant).filter(Plant.name.ilike(f"%{name}%")).all()
+
     def fetch_all(db: Session, skip: int = 0, limit: int = 100):
         return db.query(models.Plant).offset(skip).limit(limit).all()
 
