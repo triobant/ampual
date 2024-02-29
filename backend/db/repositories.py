@@ -28,7 +28,7 @@ class PlantRepo:
     def fetch_by_partial_name(db: Session, name: str) -> List[models.Plant]:
         return db.query(Plant).filter(Plant.name.ilike(f"%{name}%")).all()
 
-    def fetch_by_date(db: Session, date: str) -> List[Plant]:
+    def fetch_by_date(db: Session, date: str) -> List[models.Plant]:
         return db.query(models.Plant).filter(
                 models.Plant.raising_time == date
                 or models.Plant.transplant_time == date
