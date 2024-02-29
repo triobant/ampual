@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
+from typing import List
+from datetime import datetime
 
 
 class PlantRepo:
@@ -23,27 +25,27 @@ class PlantRepo:
     def fetch_by_name(db: Session, name):
         return db.query(models.Plant).filter(models.Plant.name == name).first()
 
-    def fetch_by_partial_name(db: Session, name: str) -> List[Plant]:
+    def fetch_by_partial_name(db: Session, name: str) -> List[models.Plant]:
         return db.query(Plant).filter(Plant.name.ilike(f"%{name}%")).all()
 
     def fetch_by_date(db: Session, date: str) -> List[Plant]:
-        return db.query(Plant).filter(
-                Plant.raising_time == date
-                or Plant.transplant_time == date
-                or Plant.harvest_time == date
+        return db.query(models.Plant).filter(
+                models.Plant.raising_time == date
+                or models.Plant.transplant_time == date
+                or models.Plant.harvest_time == date
         ).all()
 
-    def fetch_by_month(db: Session, month: str) -> List[Plant]:
+    def fetch_by_month(db: Session, month: str) -> List[models.Plant]:
         try:
             month_num = int(month)
             if month_num < 1 or month_num > 12:
                 raise ValueError
         except ValueError:
             month_num = datetime.strptime(month, "%B").month
-        return db.query(Plant).filter(
-                Plant.raising_time.like(f"%-{month_num:02d}-%")
-                or Plant.transplant_time.like(f"%-{month_num:02d}-%")
-                or Plant.harvest_time.like(f"%-{month_num:02d}-%")
+        return db.query(models.Plant).filter(
+                models.Plant.raising_time.like(f"%-{month_num:02d}-%")
+                or models.Plant.transplant_time.like(f"%-{month_num:02d}-%")
+                or models.Plant.harvest_time.like(f"%-{month_num:02d}-%")
         ).all()
 
     def fetch_all(db: Session, skip: int = 0, limit: int = 100):
