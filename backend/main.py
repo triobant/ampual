@@ -39,9 +39,6 @@ router.add_middleware(
 init_db()
 
 
-templates = Jinja2Templates(directory="templates")
-
-
 @router.exception_handler(Exception)
 def validation_exception_handler(request, err):
     base_error_message = f"Failed to execute: {request.method}: {request.url}"
