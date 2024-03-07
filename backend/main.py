@@ -102,6 +102,27 @@ async def delete_plants(plant_name: str, db_session: Session = Depends(db_sessio
     await PlantRepo.delete(db_session, plant_name)
     return "Plant deleted successfully!"
 
+###### New test route
+@router.get("/plants", response_model=list[Plant], tags=["Plant"])
+def get_plants(
+    name: Optional[str] = None,
+    date: Optional[str] = None,
+    month: Optional[str] = None,
+    db: Session = Depends(db_session)
+):
+    """
+    Get plants by name, date, or month (real-time search)
+    """
+    if name:
+        plants = PlantRepo.fetch_by_partial_name(db, name)
+    elif date:
+        plants = PlantRepo.fetch_by_date(db, date)
+    elif month:
+        plants = PlantRepo.fetch_by_month(db, month)
+    else:
+        plants = PlantRepo.fetch_all(db)
+    return plants
+
 
 @router.put("/plants/{plant_id}", tags=["Plant"], response_model=schemas.Plant)
 async def put_plants(
