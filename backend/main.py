@@ -77,7 +77,7 @@ def get_all_plants(name: Optional[str] = None, db_session: Session = Depends(db_
 
 
 @router.get("/plants/{plant_id}", tags=["Plant"], response_model=schemas.Plant)
-def get_plant(plant_name: str, db_session: Session = Depends(db_session)):
+def get_plant(plant_name: Optional[str], db_session: Session = Depends(db_session)):
     """
     Get the Plant with the given name provided by User stored in database
     """
