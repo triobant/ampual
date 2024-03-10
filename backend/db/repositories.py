@@ -6,6 +6,7 @@ from datetime import datetime
 
 class PlantRepo:
 
+    @staticmethod
     async def create(db: Session, plant: schemas.PlantCreate):
         db_plant = models.Plant(
             id=plant.id,
@@ -19,15 +20,19 @@ class PlantRepo:
         await db.refresh(db_plant)
         return db_plant
 
+    @staticmethod
     def fetch_by_id(db: Session, _id):
         return db.query(models.Plant).limit(50).filter(models.Plant.id == _id).first()
 
+    @staticmethod
     def fetch_by_name(db: Session, name):
         return db.query(models.Plant).filter(models.Plant.name == name).first()
 
+    @staticmethod
     def fetch_by_partial_name(db: Session, name: str) -> List[models.Plant]:
         return db.query(Plant).filter(Plant.name.ilike(f"%{name}%")).all()
 
+    @staticmethod
     def fetch_by_date(db: Session, date: str) -> List[models.Plant]:
         return db.query(models.Plant).filter(
                 models.Plant.raising_time == date
@@ -35,6 +40,7 @@ class PlantRepo:
                 or models.Plant.harvest_time == date
         ).all()
 
+    @staticmethod
     def fetch_by_month(db: Session, month: str) -> List[models.Plant]:
         try:
             month_num = int(month)
@@ -48,14 +54,17 @@ class PlantRepo:
                 or models.Plant.harvest_time.like(f"%-{month_num:02d}-%")
         ).all()
 
+    @staticmethod
     def fetch_all(db: Session, skip: int = 0, limit: int = 100):
         return db.query(models.Plant).offset(skip).limit(limit).all()
 
+    @staticmethod
     async def delete(db: Session, plant_id):
         db_plant = db.query(models.Plant).filter_by(id=plant_id).first()
         db.delete(db_plant)
         await db.commit()
 
+    @staticmethod
     async def update(db: Session, plant_data):
         updated_plant = db.merge(plant_data)
         await db.commit()
